@@ -48,4 +48,20 @@ PRODUCT_PACKAGES += \
     SettingsIntelligenceGooglePrebuilt \
     ViaBrowser
 
+# Ship lawnchair instead of launcher3
+ifeq ($(SHIP_LAWNCHAIR),true)
+
+PRODUCT_PACKAGES += \
+    Lawnchair
+
+PRODUCT_COPY_FILES += \
+    vendor/xtras/config/permissions/privapp-permissions-lawnchair.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/permissions/privapp-permissions-lawnchair.xml \
+    vendor/xtras/config/permissions/lawnchair-hiddenapi-package-whitelist.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/sysconfig/lawnchair-hiddenapi-package-whitelist.xml
+
+# Overlays
+PRODUCT_PACKAGE_OVERLAYS += \
+    vendor/xtras/lawnchairoverlay
+
+endif
+
 #End
